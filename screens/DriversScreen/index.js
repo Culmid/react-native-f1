@@ -4,8 +4,6 @@ import style from "./style";
 import countries from "../../assets/countries.json";
 import Flag from "react-native-flags";
 
-console.log(countries);
-
 export default function DriversScreen() {
   const [drivers, setDrivers] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -15,8 +13,7 @@ export default function DriversScreen() {
     const country = countries.find(
       (country) => country.Nationality == item.nationality
     );
-    console.log(country);
-    console.log(item);
+
     return (
       <View style={style.driverContainer}>
         <View style={style.driverHeader}>

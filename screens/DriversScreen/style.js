@@ -6,11 +6,7 @@ export default StyleSheet.create({
     backgroundColor: "#ff00ff",
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
-  },
-  loadingSpinner: {
-    width: 500,
-    height: 500,
+    padding: 10,
   },
   driversList: {
     width: "100%",
