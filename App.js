@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Image } from "react-native";
 import {
   Ionicons,
   FontAwesome,
@@ -38,7 +38,17 @@ const screenOptions = ({ route }) => ({
   },
   tabBarActiveTintColor: "orange",
   tabBarInactiveTintColor: "gray",
+  headerTitle: (props) => <LogoTitle {...props} />,
 });
+
+function LogoTitle() {
+  return (
+    <Image
+      style={{ width: 80, height: 80 }}
+      source={require("./assets/f1.png")}
+    />
+  );
+}
 
 export default function App() {
   return (

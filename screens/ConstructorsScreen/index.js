@@ -40,10 +40,7 @@ export default function ConstructorsScreen() {
         setIsLoading(false);
       }
     }
-    setTimeout(() => {
-      // For testing - TODO:Remove
-      doFetchConstructors();
-    }, 5000);
+    doFetchConstructors();
   }, []);
 
   return (

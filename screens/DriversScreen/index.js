@@ -47,10 +47,7 @@ export default function DriversScreen() {
         setIsLoading(false);
       }
     }
-    setTimeout(() => {
-      // For testing - TODO:Remove
-      doFetchDrivers();
-    }, 5000);
+    doFetchDrivers();
   }, []);
 
   return (

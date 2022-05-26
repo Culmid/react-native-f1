@@ -52,10 +52,8 @@ export default function CircuitsScreen() {
         setIsLoading(false);
       }
     }
-    setTimeout(() => {
-      // For testing - TODO:Remove
-      doFetchCircuits();
-    }, 5000);
+
+    doFetchCircuits();
   }, []);
 
   return (

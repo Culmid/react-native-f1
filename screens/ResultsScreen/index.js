@@ -116,10 +116,7 @@ export default function ResultsScreen() {
         setIsLoading(false);
       }
     }
-    setTimeout(() => {
-      // For testing - TODO:Remove
-      doFetchResults();
-    }, 5000);
+    doFetchResults();
   }, []);
 
   // {"\n"} -> Super Ghetto Solution but ¯\_(ツ)_/¯
