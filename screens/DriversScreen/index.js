@@ -1,4 +1,4 @@
-import { View, Text, ActivityIndicator, FlatList } from "react-native";
+import { View, Text, ActivityIndicator, FlatList, Button } from "react-native";
 import React, { useState, useEffect } from "react";
 import style from "./style";
 import countries from "../../assets/countries.json";
@@ -9,6 +9,8 @@ export default function DriversScreen() {
   const [drivers, setDrivers] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [offset, setOffset] = useState(0);
+  const [total, setTotal] = useState(180);
 
   const renderDriver = ({ item }) => {
     const country = countries.find(
@@ -35,12 +37,18 @@ export default function DriversScreen() {
   };
 
   useEffect(() => {
+    setIsError(false);
+    setIsLoading(true);
+
     async function doFetchDrivers() {
       try {
-        const data = await fetch("https://ergast.com/api/f1/drivers.json");
+        const data = await fetch(
+          `https://ergast.com/api/f1/drivers.json?offset=${offset}`
+        );
         const json = await data.json();
 
         setDrivers(json.MRData.DriverTable.Drivers);
+        setTotal(json.MRData.total);
       } catch (error) {
         setIsError(true);
       } finally {
@@ -48,7 +56,18 @@ export default function DriversScreen() {
       }
     }
     doFetchDrivers();
-  }, []);
+  }, [offset]);
+
+  function onPrevPress() {
+    console.log("prev");
+    setOffset((offset) => (offset - 30 > -1 ? offset - 30 : offset));
+    console.log(offset);
+  }
+
+  function onNextPress() {
+    console.log("next");
+    setOffset((offset) => (offset + 30 < total ? offset + 30 : offset));
+  }
 
   return (
     <ScreenContainer>
@@ -57,13 +76,32 @@ export default function DriversScreen() {
       )}
       {isError && <Text>Error, Please Refresh the App</Text>}
       {!isLoading && !isError && (
-        <FlatList
-          data={drivers}
-          renderItem={renderDriver}
-          keyExtractor={(driver) => driver.driverId}
-          extraData={drivers}
-          style={style.driversList}
-        />
+        <>
+          <FlatList
+            data={drivers}
+            renderItem={renderDriver}
+            keyExtractor={(driver) => driver.driverId}
+            extraData={drivers}
+            style={style.driversList}
+          />
+          <View style={style.paginationContainer}>
+            <Button
+              title="Previous"
+              color="orange"
+              onPress={onPrevPress}
+              disabled={offset === 0}
+            />
+            <Text>
+              {offset}-{offset + 30 > total ? total : offset + 30}/{total}
+            </Text>
+            <Button
+              title="Next"
+              color="orange"
+              onPress={onNextPress}
+              disabled={offset + 30 >= total}
+            />
+          </View>
+        </>
       )}
     </ScreenContainer>
   );
