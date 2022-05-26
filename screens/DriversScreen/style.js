@@ -1,13 +1,6 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  driversContainer: {
-    flex: 1,
-    backgroundColor: "#ff00ff",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 10,
-  },
   driversList: {
     width: "100%",
     backgroundColor: "blue",

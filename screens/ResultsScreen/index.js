@@ -4,6 +4,7 @@ import style from "./style";
 import countries from "../../assets/countries.json";
 import Flag from "react-native-flags";
 import { FontAwesome5, MaterialIcons, Ionicons } from "@expo/vector-icons";
+import ScreenContainer from "../../components/ScreenContainer";
 
 export default function ResultsScreen() {
   const [results, setResults] = useState({});
@@ -123,7 +124,7 @@ export default function ResultsScreen() {
 
   // {"\n"} -> Super Ghetto Solution but ¯\_(ツ)_/¯
   return (
-    <View style={style.resultsContainer}>
+    <ScreenContainer>
       {isLoading && !isError && (
         <ActivityIndicator size="large" color="#ffa500" />
       )}
@@ -157,6 +158,6 @@ export default function ResultsScreen() {
           />
         </>
       )}
-    </View>
+    </ScreenContainer>
   );
 }

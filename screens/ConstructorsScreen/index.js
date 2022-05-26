@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import style from "./style";
 import countries from "../../assets/countries.json";
 import Flag from "react-native-flags";
+import ScreenContainer from "../../components/ScreenContainer";
 
 export default function ConstructorsScreen() {
   const [constructors, setConstructors] = useState({});
@@ -46,7 +47,7 @@ export default function ConstructorsScreen() {
   }, []);
 
   return (
-    <View style={style.constructorsContainer}>
+    <ScreenContainer>
       {isLoading && !isError && (
         <ActivityIndicator size="large" color="#ffa500" />
       )}
@@ -60,6 +61,6 @@ export default function ConstructorsScreen() {
           style={style.constructorsList}
         />
       )}
-    </View>
+    </ScreenContainer>
   );
 }

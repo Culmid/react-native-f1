@@ -1,13 +1,6 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  resultsContainer: {
-    flex: 1,
-    backgroundColor: "#ff00ff",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 10,
-  },
   raceHeader: {
     width: "100%",
     backgroundColor: "orange",

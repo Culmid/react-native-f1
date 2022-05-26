@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import style from "./style";
 import countries from "../../assets/countries.json";
 import Flag from "react-native-flags";
+import ScreenContainer from "../../components/ScreenContainer";
 
 export default function DriversScreen() {
   const [drivers, setDrivers] = useState({});
@@ -53,7 +54,7 @@ export default function DriversScreen() {
   }, []);
 
   return (
-    <View style={style.driversContainer}>
+    <ScreenContainer>
       {isLoading && !isError && (
         <ActivityIndicator size="large" color="#ffa500" />
       )}
@@ -67,6 +68,6 @@ export default function DriversScreen() {
           style={style.driversList}
         />
       )}
-    </View>
+    </ScreenContainer>
   );
 }

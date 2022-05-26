@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import style from "./style";
 import countries from "../../assets/countries.json";
 import Flag from "react-native-flags";
+import ScreenContainer from "../../components/ScreenContainer";
 
 export default function CircuitsScreen() {
   const [circuits, setCircuits] = useState({});
@@ -58,7 +59,7 @@ export default function CircuitsScreen() {
   }, []);
 
   return (
-    <View style={style.circuitsContainer}>
+    <ScreenContainer>
       {isLoading && !isError && (
         <ActivityIndicator size="large" color="#ffa500" />
       )}
@@ -72,6 +73,6 @@ export default function CircuitsScreen() {
           style={style.circuitsList}
         />
       )}
-    </View>
+    </ScreenContainer>
   );
 }
