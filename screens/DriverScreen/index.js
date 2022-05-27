@@ -33,7 +33,7 @@ export default function DriverScreen(props) {
         <Text style={style.nationality}>{driver.nationality}</Text>
         {imgPath ? (
           <Image
-            style={{ flex: 1, width: "100%" }}
+            style={{ flex: 1, width: "100%", borderRadius: 10 }}
             source={{
               uri: imgPath,
             }}

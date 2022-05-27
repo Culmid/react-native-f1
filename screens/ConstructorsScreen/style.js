@@ -3,13 +3,16 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   constructorsList: {
     width: "100%",
-    backgroundColor: "blue",
   },
   constructorContainer: {
-    backgroundColor: "green",
+    backgroundColor: "orange",
     marginBottom: 2,
     borderRadius: 10,
     padding: 5,
+  },
+  headerText: {
+    fontSize: 40,
+    fontWeight: "700",
   },
   constructorHeader: {
     flexDirection: "row",

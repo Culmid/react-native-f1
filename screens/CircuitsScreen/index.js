@@ -79,6 +79,7 @@ export default function CircuitsScreen() {
       {isError && <Text>Error, Please Refresh the App</Text>}
       {!isLoading && !isError && (
         <>
+          <Text style={style.headerText}>Circuits</Text>
           <FlatList
             data={circuits}
             renderItem={renderCircuit}
@@ -93,7 +94,7 @@ export default function CircuitsScreen() {
               onPress={onPrevPress}
               disabled={offset === 0}
             />
-            <Text>
+            <Text style={{ fontWeight: "700" }}>
               {offset}-{offset + 30 > total ? total : offset + 30}/{total}
             </Text>
             <Button

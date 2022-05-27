@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   raceHeader: {
     width: "100%",
-    backgroundColor: "orange",
+    backgroundColor: "skyblue",
     alignItems: "center",
     margin: 10,
     borderRadius: 10,
@@ -34,10 +34,9 @@ export default StyleSheet.create({
   },
   resultsList: {
     width: "100%",
-    backgroundColor: "blue",
   },
   resultContainer: {
-    backgroundColor: "purple",
+    backgroundColor: "orange",
     marginBottom: 2,
     borderRadius: 10,
     padding: 5,

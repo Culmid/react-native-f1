@@ -3,13 +3,16 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   circuitsList: {
     width: "100%",
-    backgroundColor: "blue",
   },
   circuitContainer: {
-    backgroundColor: "green",
+    backgroundColor: "orange",
     marginBottom: 2,
     borderRadius: 10,
     padding: 5,
+  },
+  headerText: {
+    fontSize: 40,
+    fontWeight: "700",
   },
   circuitHeader: {
     flexDirection: "row",
