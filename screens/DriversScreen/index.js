@@ -1,16 +1,9 @@
-import {
-  View,
-  Text,
-  ActivityIndicator,
-  FlatList,
-  Button,
-  Pressable,
-} from "react-native";
+import { View, Text, ActivityIndicator, FlatList, Button } from "react-native";
 import React, { useState, useEffect } from "react";
 import style from "./style";
-import countries from "../../assets/countries.json";
-import Flag from "react-native-flags";
+
 import ScreenContainer from "../../components/ScreenContainer";
+import DriverInfo from "../../components/DriverInfo";
 
 export default function DriversScreen({ navigation }) {
   const [drivers, setDrivers] = useState({});
@@ -18,32 +11,6 @@ export default function DriversScreen({ navigation }) {
   const [isError, setIsError] = useState(false);
   const [offset, setOffset] = useState(0);
   const [total, setTotal] = useState(180);
-
-  const renderDriver = ({ item }) => {
-    const country = countries.find(
-      (country) => country.Nationality == item.nationality
-    );
-
-    return (
-      <Pressable onPress={() => navigateDriver(item.driverId)}>
-        <View style={style.driverContainer}>
-          <View style={style.driverHeader}>
-            <Text style={style.driverHeaderText}>
-              {item.givenName} {item.familyName}
-            </Text>
-            <View style={style.driverHeaderDecoration}>
-              <Text style={style.driverHeaderText}>
-                {item.code} {item.permanentNumber}{" "}
-              </Text>
-              {country && <Flag code={country.CCA2} size={24} />}
-            </View>
-          </View>
-          <Text style={style.dob}>{item.dateOfBirth}</Text>
-          <Text style={style.nationality}>{item.nationality}</Text>
-        </View>
-      </Pressable>
-    );
-  };
 
   function navigateDriver(driverId) {
     navigation.navigate("Driver", { driverId });
@@ -90,7 +57,9 @@ export default function DriversScreen({ navigation }) {
           <Text style={style.headerText}>Drivers</Text>
           <FlatList
             data={drivers}
-            renderItem={renderDriver}
+            renderItem={({ item }) => (
+              <DriverInfo driver={item} navigateDriver={navigateDriver} />
+            )}
             keyExtractor={(driver) => driver.driverId}
             extraData={drivers}
             style={style.driversList}
