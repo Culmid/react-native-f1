@@ -1,5 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import { StyleSheet, Image } from "react-native";
 import {
   Ionicons,
@@ -12,8 +13,11 @@ import ConstructorsScreen from "./screens/ConstructorsScreen";
 import DriversScreen from "./screens/DriversScreen";
 import HomeScreen from "./screens/HomeScreen";
 import ResultsScreen from "./screens/ResultsScreen";
+import DriverScreen from "./screens/DriverScreen";
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
 const screenOptions = ({ route }) => ({
   tabBarIcon: ({ focused, color, size }) => {
     let iconName;
@@ -50,12 +54,21 @@ function LogoTitle() {
   );
 }
 
+function DriverNavigator() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="DriversNavigator" component={DriversScreen} />
+      <Stack.Screen name="Driver" component={DriverScreen} />
+    </Stack.Navigator>
+  );
+}
+
 export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={screenOptions}>
         <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Drivers" component={DriversScreen} />
+        <Tab.Screen name="Drivers" component={DriverNavigator} />
         <Tab.Screen name="Circuits" component={CircuitsScreen} />
         <Tab.Screen name="Constructors" component={ConstructorsScreen} />
         <Tab.Screen name="Results" component={ResultsScreen} />
