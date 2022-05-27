@@ -11,7 +11,9 @@ export default function HomeScreen() {
         style={style.image}
         imageStyle={{ borderRadius: 10 }}
       >
-        <Text style={style.text}>Welcome to React Native F1</Text>
+        <View style={style.textContainer}>
+          <Text style={style.text}>Welcome to React Native F1</Text>
+        </View>
       </ImageBackground>
     </ScreenContainer>
   );

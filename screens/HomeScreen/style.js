@@ -5,14 +5,18 @@ export default StyleSheet.create({
     flex: 1,
     width: "100%",
   },
-  text: {
+  textContainer: {
+    backgroundColor: "#000",
     margin: 10,
-    height: 100,
-    color: "white",
-    backgroundColor: "#000000",
-    textAlign: "center",
+    padding: 10,
+    alignItems: "center",
+    justifyContent: "center",
     borderRadius: 10,
+  },
+  text: {
+    color: "white",
+    textAlign: "center",
     fontSize: 38,
-    padding: 5,
+    maxWidth: "90%",
   },
 });
