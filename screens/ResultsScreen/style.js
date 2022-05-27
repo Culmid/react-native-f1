@@ -48,7 +48,7 @@ export default StyleSheet.create({
   },
   resultHeaderText: {
     fontWeight: "700",
-    fontSize: 18,
+    fontSize: 16,
   },
   bold: {
     fontWeight: "700",

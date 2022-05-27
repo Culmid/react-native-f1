@@ -43,6 +43,13 @@ export default function ResultsScreen() {
           <Text style={style.resultHeaderText}>
             {item.Driver.givenName} {item.Driver.familyName}
           </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: "row-reverse",
+            justifyContent: "space-between",
+          }}
+        >
           <Text style={style.resultHeaderText}>
             {"Time" in item
               ? item.Time.time
@@ -50,14 +57,14 @@ export default function ResultsScreen() {
               ? item.status
               : `DNF: ${item.status}`}
           </Text>
+          <Text style={style.dob}>
+            <Text style={style.bold}>Constructor:</Text>{" "}
+            {constructorCountry && (
+              <Flag code={constructorCountry.CCA2} size={16} />
+            )}{" "}
+            {item.Constructor.name}
+          </Text>
         </View>
-        <Text style={style.dob}>
-          <Text style={style.bold}>Constructor:</Text>{" "}
-          {constructorCountry && (
-            <Flag code={constructorCountry.CCA2} size={16} />
-          )}{" "}
-          {item.Constructor.name}
-        </Text>
         <Text style={style.nationality}>
           <Text style={style.bold}>Points:</Text> {item.points}
         </Text>
