@@ -49,7 +49,9 @@ export default function DriverScreen(props) {
       const text = await response.text();
 
       // Return first image on wiki
-      return text.match(/https:\/\/upload.wikimedia.org\/\S+\.(?:jpg|gif|png)/);
+      return text.match(
+        /https:\/\/upload.wikimedia.org\/\S+\.(?:jpg|gif|png)/gi
+      );
     } catch (err) {
       console.log("Failed to fetch page: ", err);
     }
