@@ -4,6 +4,7 @@ import style from "./style";
 import countries from "../../assets/countries.json";
 import Flag from "react-native-flags";
 import ScreenContainer from "../../components/ScreenContainer";
+import ConstructorInfo from "../../components/ConstructorInfo";
 
 export default function ConstructorsScreen() {
   const [constructors, setConstructors] = useState({});
@@ -11,22 +12,6 @@ export default function ConstructorsScreen() {
   const [isError, setIsError] = useState(false);
   const [offset, setOffset] = useState(0);
   const [total, setTotal] = useState(180);
-
-  const renderConstructors = ({ item }) => {
-    const country = countries.find(
-      (country) => country.Nationality == item.nationality
-    );
-
-    return (
-      <View style={style.constructorContainer}>
-        <View style={style.constructorHeader}>
-          <Text style={style.constructorName}>{item.name}</Text>
-          {country && <Flag code={country.CCA2} size={24} />}
-        </View>
-        <Text style={style.nationality}>{item.nationality}</Text>
-      </View>
-    );
-  };
 
   useEffect(() => {
     setIsError(false);
@@ -69,7 +54,7 @@ export default function ConstructorsScreen() {
           <Text style={style.headerText}>Constructors</Text>
           <FlatList
             data={constructors}
-            renderItem={renderConstructors}
+            renderItem={({ item }) => <ConstructorInfo constructor={item} />}
             keyExtractor={(constructor) => constructor.constructorId}
             extraData={constructors}
             style={style.constructorsList}
