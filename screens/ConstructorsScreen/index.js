@@ -1,71 +1,8 @@
-import { Text, ActivityIndicator, FlatList } from "react-native";
-import React, { useState, useEffect } from "react";
-import style from "./style";
-import ScreenContainer from "../../components/ScreenContainer";
 import ConstructorInfo from "../../components/ConstructorInfo";
-import PaginationControls from "../../components/PaginationControls";
+import GenericInfoPage from "../../components/GenericInfoPage";
 
 export default function ConstructorsScreen() {
-  const [constructors, setConstructors] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  const [offset, setOffset] = useState(0);
-  const [total, setTotal] = useState(180);
+  const renderItem = ({ item }) => <ConstructorInfo constructor={item} />;
 
-  useEffect(() => {
-    setIsError(false);
-    setIsLoading(true);
-
-    async function doFetchConstructors() {
-      try {
-        const data = await fetch(
-          `https://ergast.com/api/f1/constructors.json?offset=${offset}`
-        );
-        const json = await data.json();
-
-        setConstructors(json.MRData.ConstructorTable.Constructors);
-        setTotal(json.MRData.total);
-      } catch (error) {
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    doFetchConstructors();
-  }, [offset]);
-
-  function onPrevPress() {
-    setOffset((offset) => (offset - 30 > -1 ? offset - 30 : offset));
-  }
-
-  function onNextPress() {
-    setOffset((offset) => (offset + 30 < total ? offset + 30 : offset));
-  }
-
-  return (
-    <ScreenContainer>
-      {isLoading && !isError && (
-        <ActivityIndicator size="large" color="#ffa500" />
-      )}
-      {isError && <Text>Error, Please Refresh the App</Text>}
-      {!isLoading && !isError && (
-        <>
-          <Text style={style.headerText}>Constructors</Text>
-          <FlatList
-            data={constructors}
-            renderItem={({ item }) => <ConstructorInfo constructor={item} />}
-            keyExtractor={(constructor) => constructor.constructorId}
-            extraData={constructors}
-            style={style.constructorsList}
-          />
-          <PaginationControls
-            offset={offset}
-            total={total}
-            onPrevPress={onPrevPress}
-            onNextPress={onNextPress}
-          />
-        </>
-      )}
-    </ScreenContainer>
-  );
+  return <GenericInfoPage type="Constructors" renderItem={renderItem} />;
 }
