@@ -1,4 +1,4 @@
-import { View, Text, ActivityIndicator, FlatList } from "react-native";
+import { View, Text, ActivityIndicator, FlatList, Button } from "react-native";
 import React, { useState, useEffect } from "react";
 import style from "./style";
 import countries from "../../assets/countries.json";
@@ -9,6 +9,8 @@ export default function CircuitsScreen() {
   const [circuits, setCircuits] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [offset, setOffset] = useState(0);
+  const [total, setTotal] = useState(180);
 
   const renderCircuit = ({ item }) => {
     const country = countries.find(
@@ -19,7 +21,6 @@ export default function CircuitsScreen() {
         shortenCountryName(country.Name) == item.Location.country
     );
 
-    console.log(item);
     return (
       <View style={style.circuitContainer}>
         <View style={style.circuitHeader}>
@@ -40,12 +41,18 @@ export default function CircuitsScreen() {
   }
 
   useEffect(() => {
+    setIsError(false);
+    setIsLoading(true);
+
     async function doFetchCircuits() {
       try {
-        const data = await fetch("https://ergast.com/api/f1/circuits.json");
+        const data = await fetch(
+          `https://ergast.com/api/f1/circuits.json?offset=${offset}`
+        );
         const json = await data.json();
 
         setCircuits(json.MRData.CircuitTable.Circuits);
+        setTotal(json.MRData.total);
       } catch (error) {
         setIsError(true);
       } finally {
@@ -54,7 +61,15 @@ export default function CircuitsScreen() {
     }
 
     doFetchCircuits();
-  }, []);
+  }, [offset]);
+
+  function onPrevPress() {
+    setOffset((offset) => (offset - 30 > -1 ? offset - 30 : offset));
+  }
+
+  function onNextPress() {
+    setOffset((offset) => (offset + 30 < total ? offset + 30 : offset));
+  }
 
   return (
     <ScreenContainer>
@@ -63,13 +78,32 @@ export default function CircuitsScreen() {
       )}
       {isError && <Text>Error, Please Refresh the App</Text>}
       {!isLoading && !isError && (
-        <FlatList
-          data={circuits}
-          renderItem={renderCircuit}
-          keyExtractor={(circuit) => circuit.circuitId}
-          extraData={circuits}
-          style={style.circuitsList}
-        />
+        <>
+          <FlatList
+            data={circuits}
+            renderItem={renderCircuit}
+            keyExtractor={(circuit) => circuit.circuitId}
+            extraData={circuits}
+            style={style.circuitsList}
+          />
+          <View style={style.paginationContainer}>
+            <Button
+              title="Previous"
+              color="orange"
+              onPress={onPrevPress}
+              disabled={offset === 0}
+            />
+            <Text>
+              {offset}-{offset + 30 > total ? total : offset + 30}/{total}
+            </Text>
+            <Button
+              title="Next"
+              color="orange"
+              onPress={onNextPress}
+              disabled={offset + 30 >= total}
+            />
+          </View>
+        </>
       )}
     </ScreenContainer>
   );

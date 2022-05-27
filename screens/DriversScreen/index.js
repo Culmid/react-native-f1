@@ -59,13 +59,10 @@ export default function DriversScreen() {
   }, [offset]);
 
   function onPrevPress() {
-    console.log("prev");
     setOffset((offset) => (offset - 30 > -1 ? offset - 30 : offset));
-    console.log(offset);
   }
 
   function onNextPress() {
-    console.log("next");
     setOffset((offset) => (offset + 30 < total ? offset + 30 : offset));
   }
 

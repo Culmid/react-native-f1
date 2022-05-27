@@ -9,7 +9,7 @@ export default StyleSheet.create({
     margin: 10,
     height: 100,
     color: "white",
-    backgroundColor: "#000000c0",
+    backgroundColor: "#000000",
     textAlign: "center",
     borderRadius: 10,
     fontSize: 38,

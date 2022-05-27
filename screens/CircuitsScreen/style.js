@@ -27,4 +27,11 @@ export default StyleSheet.create({
     fontWeight: "300",
     fontSize: 18,
   },
+  paginationContainer: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 10,
+  },
 });

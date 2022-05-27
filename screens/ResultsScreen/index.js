@@ -29,7 +29,6 @@ export default function ResultsScreen() {
         : gridPos < endPos
         ? ["arrow-down", "red"]
         : ["equals", "black"];
-    console.log(item);
 
     return (
       <View style={style.resultContainer}>

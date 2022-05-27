@@ -1,4 +1,4 @@
-import { View, Text, ActivityIndicator, FlatList } from "react-native";
+import { View, Text, ActivityIndicator, FlatList, Button } from "react-native";
 import React, { useState, useEffect } from "react";
 import style from "./style";
 import countries from "../../assets/countries.json";
@@ -9,13 +9,14 @@ export default function ConstructorsScreen() {
   const [constructors, setConstructors] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [offset, setOffset] = useState(0);
+  const [total, setTotal] = useState(180);
 
   const renderConstructors = ({ item }) => {
     const country = countries.find(
       (country) => country.Nationality == item.nationality
     );
 
-    console.log(item);
     return (
       <View style={style.constructorContainer}>
         <View style={style.constructorHeader}>
@@ -28,12 +29,18 @@ export default function ConstructorsScreen() {
   };
 
   useEffect(() => {
+    setIsError(false);
+    setIsLoading(true);
+
     async function doFetchConstructors() {
       try {
-        const data = await fetch("https://ergast.com/api/f1/constructors.json");
+        const data = await fetch(
+          `https://ergast.com/api/f1/constructors.json?offset=${offset}`
+        );
         const json = await data.json();
 
         setConstructors(json.MRData.ConstructorTable.Constructors);
+        setTotal(json.MRData.total);
       } catch (error) {
         setIsError(true);
       } finally {
@@ -41,7 +48,15 @@ export default function ConstructorsScreen() {
       }
     }
     doFetchConstructors();
-  }, []);
+  }, [offset]);
+
+  function onPrevPress() {
+    setOffset((offset) => (offset - 30 > -1 ? offset - 30 : offset));
+  }
+
+  function onNextPress() {
+    setOffset((offset) => (offset + 30 < total ? offset + 30 : offset));
+  }
 
   return (
     <ScreenContainer>
@@ -50,13 +65,32 @@ export default function ConstructorsScreen() {
       )}
       {isError && <Text>Error, Please Refresh the App</Text>}
       {!isLoading && !isError && (
-        <FlatList
-          data={constructors}
-          renderItem={renderConstructors}
-          keyExtractor={(constructor) => constructor.constructorId}
-          extraData={constructors}
-          style={style.constructorsList}
-        />
+        <>
+          <FlatList
+            data={constructors}
+            renderItem={renderConstructors}
+            keyExtractor={(constructor) => constructor.constructorId}
+            extraData={constructors}
+            style={style.constructorsList}
+          />
+          <View style={style.paginationContainer}>
+            <Button
+              title="Previous"
+              color="orange"
+              onPress={onPrevPress}
+              disabled={offset === 0}
+            />
+            <Text>
+              {offset}-{offset + 30 > total ? total : offset + 30}/{total}
+            </Text>
+            <Button
+              title="Next"
+              color="orange"
+              onPress={onNextPress}
+              disabled={offset + 30 >= total}
+            />
+          </View>
+        </>
       )}
     </ScreenContainer>
   );
