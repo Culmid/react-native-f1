@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import style from "./style";
 import ScreenContainer from "../../components/ScreenContainer";
 import CircuitInfo from "../../components/CircuitInfo";
+import PaginationControls from "../../components/PaginationControls";
 
 export default function CircuitsScreen() {
   const [circuits, setCircuits] = useState({});
@@ -58,23 +59,12 @@ export default function CircuitsScreen() {
             extraData={circuits}
             style={style.circuitsList}
           />
-          <View style={style.paginationContainer}>
-            <Button
-              title="Previous"
-              color="orange"
-              onPress={onPrevPress}
-              disabled={offset === 0}
-            />
-            <Text style={{ fontWeight: "700" }}>
-              {offset}-{offset + 30 > total ? total : offset + 30}/{total}
-            </Text>
-            <Button
-              title="Next"
-              color="orange"
-              onPress={onNextPress}
-              disabled={offset + 30 >= total}
-            />
-          </View>
+          <PaginationControls
+            offset={offset}
+            total={total}
+            onPrevPress={onPrevPress}
+            onNextPress={onNextPress}
+          />
         </>
       )}
     </ScreenContainer>

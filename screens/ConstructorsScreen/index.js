@@ -1,10 +1,9 @@
-import { View, Text, ActivityIndicator, FlatList, Button } from "react-native";
+import { Text, ActivityIndicator, FlatList } from "react-native";
 import React, { useState, useEffect } from "react";
 import style from "./style";
-import countries from "../../assets/countries.json";
-import Flag from "react-native-flags";
 import ScreenContainer from "../../components/ScreenContainer";
 import ConstructorInfo from "../../components/ConstructorInfo";
+import PaginationControls from "../../components/PaginationControls";
 
 export default function ConstructorsScreen() {
   const [constructors, setConstructors] = useState({});
@@ -59,23 +58,12 @@ export default function ConstructorsScreen() {
             extraData={constructors}
             style={style.constructorsList}
           />
-          <View style={style.paginationContainer}>
-            <Button
-              title="Previous"
-              color="orange"
-              onPress={onPrevPress}
-              disabled={offset === 0}
-            />
-            <Text style={{ fontWeight: "700" }}>
-              {offset}-{offset + 30 > total ? total : offset + 30}/{total}
-            </Text>
-            <Button
-              title="Next"
-              color="orange"
-              onPress={onNextPress}
-              disabled={offset + 30 >= total}
-            />
-          </View>
+          <PaginationControls
+            offset={offset}
+            total={total}
+            onPrevPress={onPrevPress}
+            onNextPress={onNextPress}
+          />
         </>
       )}
     </ScreenContainer>

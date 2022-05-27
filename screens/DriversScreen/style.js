@@ -8,11 +8,4 @@ export default StyleSheet.create({
     fontSize: 40,
     fontWeight: "700",
   },
-  paginationContainer: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 10,
-  },
 });

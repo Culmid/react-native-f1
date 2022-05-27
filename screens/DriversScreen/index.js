@@ -4,6 +4,7 @@ import style from "./style";
 
 import ScreenContainer from "../../components/ScreenContainer";
 import DriverInfo from "../../components/DriverInfo";
+import PaginationControls from "../../components/PaginationControls";
 
 export default function DriversScreen({ navigation }) {
   const [drivers, setDrivers] = useState({});
@@ -64,23 +65,12 @@ export default function DriversScreen({ navigation }) {
             extraData={drivers}
             style={style.driversList}
           />
-          <View style={style.paginationContainer}>
-            <Button
-              title="Previous"
-              color="orange"
-              onPress={onPrevPress}
-              disabled={offset === 0}
-            />
-            <Text style={{ fontWeight: "700" }}>
-              {offset}-{offset + 30 > total ? total : offset + 30}/{total}
-            </Text>
-            <Button
-              title="Next"
-              color="orange"
-              onPress={onNextPress}
-              disabled={offset + 30 >= total}
-            />
-          </View>
+          <PaginationControls
+            offset={offset}
+            total={total}
+            onPrevPress={onPrevPress}
+            onNextPress={onNextPress}
+          />
         </>
       )}
     </ScreenContainer>
