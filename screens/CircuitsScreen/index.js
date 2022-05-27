@@ -1,9 +1,8 @@
 import { View, Text, ActivityIndicator, FlatList, Button } from "react-native";
 import React, { useState, useEffect } from "react";
 import style from "./style";
-import countries from "../../assets/countries.json";
-import Flag from "react-native-flags";
 import ScreenContainer from "../../components/ScreenContainer";
+import CircuitInfo from "../../components/CircuitInfo";
 
 export default function CircuitsScreen() {
   const [circuits, setCircuits] = useState({});
@@ -11,34 +10,6 @@ export default function CircuitsScreen() {
   const [isError, setIsError] = useState(false);
   const [offset, setOffset] = useState(0);
   const [total, setTotal] = useState(180);
-
-  const renderCircuit = ({ item }) => {
-    const country = countries.find(
-      (country) =>
-        country.Name == item.Location.country ||
-        country.CCA2 == item.Location.country ||
-        country.CCA3 == item.Location.country ||
-        shortenCountryName(country.Name) == item.Location.country
-    );
-
-    return (
-      <View style={style.circuitContainer}>
-        <View style={style.circuitHeader}>
-          <Text style={style.circuitName}>{item.circuitName}</Text>
-          {country && <Flag code={country.CCA2} size={24} />}
-        </View>
-        <Text style={style.local}>{item.Location.locality}</Text>
-        <Text style={style.country}>{item.Location.country}</Text>
-      </View>
-    );
-  };
-
-  function shortenCountryName(countryName) {
-    return countryName
-      .split(" ")
-      .map((word) => word[0])
-      .join("");
-  }
 
   useEffect(() => {
     setIsError(false);
@@ -82,7 +53,7 @@ export default function CircuitsScreen() {
           <Text style={style.headerText}>Circuits</Text>
           <FlatList
             data={circuits}
-            renderItem={renderCircuit}
+            renderItem={({ item }) => <CircuitInfo circuit={item} />}
             keyExtractor={(circuit) => circuit.circuitId}
             extraData={circuits}
             style={style.circuitsList}
