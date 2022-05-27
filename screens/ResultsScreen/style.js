@@ -35,21 +35,6 @@ export default StyleSheet.create({
   resultsList: {
     width: "100%",
   },
-  resultContainer: {
-    backgroundColor: "orange",
-    marginBottom: 2,
-    borderRadius: 10,
-    padding: 5,
-  },
-  resultHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  resultHeaderText: {
-    fontWeight: "700",
-    fontSize: 16,
-  },
   bold: {
     fontWeight: "700",
   },

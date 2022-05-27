@@ -3,92 +3,14 @@ import React, { useState, useEffect } from "react";
 import style from "./style";
 import countries from "../../assets/countries.json";
 import Flag from "react-native-flags";
-import { FontAwesome5, MaterialIcons, Ionicons } from "@expo/vector-icons";
 import ScreenContainer from "../../components/ScreenContainer";
+import ResultInfo from "../../components/ResultInfo";
 
 export default function ResultsScreen() {
   const [results, setResults] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   let country;
-
-  const renderResults = ({ item }) => {
-    const country = countries.find(
-      (country) => country.Nationality == item.Driver.nationality
-    );
-
-    const constructorCountry = countries.find(
-      (country) => country.Nationality == item.Constructor.nationality
-    );
-
-    const gridPos = parseInt(item.grid);
-    const endPos = parseInt(item.position);
-    const positionSymbol =
-      gridPos > endPos
-        ? ["arrow-up", "green"]
-        : gridPos < endPos
-        ? ["arrow-down", "red"]
-        : ["equals", "black"];
-
-    return (
-      <View style={style.resultContainer}>
-        <View style={style.resultHeader}>
-          <Text style={style.resultHeaderText}>
-            {item.positionText === "R" ? "DNF" : item.positionText}
-          </Text>
-          <Text style={style.resultHeaderText}>
-            {item.Driver.code}-{item.number}
-          </Text>
-          {country && <Flag code={country.CCA2} size={24} />}
-          <Text style={style.resultHeaderText}>
-            {item.Driver.givenName} {item.Driver.familyName}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "row-reverse",
-            justifyContent: "space-between",
-          }}
-        >
-          <Text style={style.resultHeaderText}>
-            {"Time" in item
-              ? item.Time.time
-              : item.status.includes("+")
-              ? item.status
-              : `DNF: ${item.status}`}
-          </Text>
-          <Text style={style.dob}>
-            <Text style={style.bold}>Constructor:</Text>{" "}
-            {constructorCountry && (
-              <Flag code={constructorCountry.CCA2} size={16} />
-            )}{" "}
-            {item.Constructor.name}
-          </Text>
-        </View>
-        <Text style={style.nationality}>
-          <Text style={style.bold}>Points:</Text> {item.points}
-        </Text>
-        <Text>
-          <Text style={style.bold}>Grid Position:</Text> {item.grid}{" "}
-          {
-            <FontAwesome5
-              name={positionSymbol[0]}
-              size={16}
-              color={positionSymbol[1]}
-            />
-          }
-        </Text>
-        <Text>
-          <Text style={style.bold}>Fastest Lap:</Text>{" "}
-          <MaterialIcons name="timer" size={16} color="black" />{" "}
-          {item.FastestLap.Time.time}{" "}
-          <Ionicons name="speedometer-outline" size={16} color="black" />{" "}
-          {item.FastestLap.AverageSpeed.speed}{" "}
-          {item.FastestLap.AverageSpeed.units}
-        </Text>
-      </View>
-    );
-  };
 
   function getCountry() {
     return countries.find(
@@ -154,7 +76,7 @@ export default function ResultsScreen() {
           </View>
           <FlatList
             data={results.Results}
-            renderItem={renderResults}
+            renderItem={({ item }) => <ResultInfo result={item} />}
             keyExtractor={(result) => result.Driver.driverId}
             extraData={results}
             style={style.resultsList}
