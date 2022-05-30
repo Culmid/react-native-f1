@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ActivityIndicator, Image, Button } from "react-native";
+import { Text, ActivityIndicator, Button } from "react-native";
 import ScreenContainer from "../../components/ScreenContainer";
-import style from "./style";
-import Flag from "react-native-flags";
-import { getCountryByNationality, fetchWikiImgUrl } from "../../utils/utils";
+import SingleConstructorInfo from "../../components/SingleConstructorInfo";
+import { fetchWikiImgUrl } from "../../utils/utils";
 
 /**
  * Singular constructor page to be shown when the ConstructorsScreen FlatList is clicked.
@@ -16,27 +15,6 @@ export default function ConstructorScreen(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [imgPath, setImgPath] = useState(null);
-
-  function ConstructorComponent() {
-    const country = getCountryByNationality(constructor.nationality);
-
-    return (
-      <View style={style.container}>
-        <Text style={style.headerText}>{constructor.name}</Text>
-        {country && <Flag code={country.CCA2} size={48} />}
-        <Text style={style.bold}>{constructor.nationality}</Text>
-        {imgPath ? (
-          <Image
-            style={{ flex: 1, width: "100%", height: "auto" }}
-            source={{
-              uri: imgPath,
-            }}
-            resizeMode="center"
-          />
-        ) : null}
-      </View>
-    );
-  }
 
   function navigateConstructors() {
     props.navigation.navigate("ConstructorsNavigator");
@@ -76,7 +54,7 @@ export default function ConstructorScreen(props) {
       {isError && <Text>Error, Please Refresh the App</Text>}
       {!isLoading && !isError && (
         <>
-          <ConstructorComponent />
+          <SingleConstructorInfo constructor={constructor} imgPath={imgPath} />
           <Button title="Back" color="orange" onPress={navigateConstructors} />
         </>
       )}

@@ -24,8 +24,4 @@ export default StyleSheet.create({
     fontWeight: "700",
     fontSize: 24,
   },
-  backButton: {
-    flex: 1,
-    width: "100%",
-  },
 });
