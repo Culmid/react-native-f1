@@ -31,4 +31,16 @@ function getCountryByNationality(nationality) {
   return countries.find((country) => country.Nationality == nationality);
 }
 
-export { getCountryByCountry, getCountryByNationality };
+async function fetchWikiImgUrl(wikiUrl) {
+  try {
+    const response = await fetch(wikiUrl);
+    const text = await response.text();
+
+    // Return first image on wiki
+    return text.match(/https:\/\/upload.wikimedia.org\/\S+\.(?:jpg|gif|png)/gi);
+  } catch (err) {
+    console.log("Failed to fetch page: ", err);
+  }
+}
+
+export { getCountryByCountry, getCountryByNationality, fetchWikiImgUrl };

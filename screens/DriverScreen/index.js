@@ -4,6 +4,7 @@ import ScreenContainer from "../../components/ScreenContainer";
 import countries from "../../assets/countries.json";
 import style from "./style";
 import Flag from "react-native-flags";
+import { fetchWikiImgUrl } from "../../utils/utils";
 
 /**
  * Singular driver page to be shown when the DriversScreen FlatList is clicked.
@@ -46,20 +47,6 @@ export default function DriverScreen(props) {
         ) : null}
       </View>
     );
-  }
-
-  async function fetchWikiImgUrl(wikiUrl) {
-    try {
-      const response = await fetch(wikiUrl);
-      const text = await response.text();
-
-      // Return first image on wiki
-      return text.match(
-        /https:\/\/upload.wikimedia.org\/\S+\.(?:jpg|gif|png)/gi
-      );
-    } catch (err) {
-      console.log("Failed to fetch page: ", err);
-    }
   }
 
   function navigateDrivers() {

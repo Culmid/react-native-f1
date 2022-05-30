@@ -3,7 +3,7 @@ import { View, Text, ActivityIndicator, Image, Button } from "react-native";
 import ScreenContainer from "../../components/ScreenContainer";
 import style from "./style";
 import Flag from "react-native-flags";
-import { getCountryByNationality } from "../../utils/utils";
+import { getCountryByNationality, fetchWikiImgUrl } from "../../utils/utils";
 
 /**
  * Singular constructor page to be shown when the ConstructorsScreen FlatList is clicked.
@@ -36,20 +36,6 @@ export default function ConstructorScreen(props) {
         ) : null}
       </View>
     );
-  }
-
-  async function fetchWikiImgUrl(wikiUrl) {
-    try {
-      const response = await fetch(wikiUrl);
-      const text = await response.text();
-
-      // Return first image on wiki
-      return text.match(
-        /https:\/\/upload.wikimedia.org\/\S+\.(?:jpg|gif|png)/gi
-      );
-    } catch (err) {
-      console.log("Failed to fetch page: ", err);
-    }
   }
 
   function navigateConstructors() {
