@@ -1,16 +1,10 @@
 import { View, Text } from "react-native";
-import countries from "../../assets/countries.json";
 import Flag from "react-native-flags";
+import { getCountryByCountry } from "../../utils/utils";
 import style from "./style";
 
 export default function ResultHeader({ results }) {
-  const country = countries.find(
-    (country) =>
-      country.Name == results.Circuit.Location.country ||
-      country.CCA2 == results.Circuit.Location.country ||
-      country.CCA3 == results.Circuit.Location.country ||
-      shortenCountryName(country.Name) == results.Circuit.Location.country
-  );
+  const country = getCountryByCountry(results.Circuit.Location.country);
 
   return (
     <View style={style.raceHeader}>

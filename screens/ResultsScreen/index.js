@@ -1,4 +1,4 @@
-import { View, Text, ActivityIndicator, FlatList } from "react-native";
+import { Text, ActivityIndicator, FlatList } from "react-native";
 import React, { useState, useEffect } from "react";
 import style from "./style";
 import ScreenContainer from "../../components/ScreenContainer";

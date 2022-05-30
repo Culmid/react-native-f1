@@ -1,16 +1,10 @@
 import { View, Text } from "react-native";
-import countries from "../../assets/countries.json";
 import Flag from "react-native-flags";
 import style from "./style";
+import { getCountryByCountry } from "../../utils/utils";
 
 export default function CircuitInfo({ circuit }) {
-  const country = countries.find(
-    (country) =>
-      country.Name == circuit.Location.country ||
-      country.CCA2 == circuit.Location.country ||
-      country.CCA3 == circuit.Location.country ||
-      shortenCountryName(country.Name) == circuit.Location.country
-  );
+  const country = getCountryByCountry(circuit.Location.country);
 
   return (
     <View style={style.circuitContainer}>
@@ -22,11 +16,4 @@ export default function CircuitInfo({ circuit }) {
       <Text style={style.country}>{circuit.Location.country}</Text>
     </View>
   );
-}
-
-function shortenCountryName(countryName) {
-  return countryName
-    .split(" ")
-    .map((word) => word[0])
-    .join("");
 }

@@ -1,12 +1,10 @@
 import { View, Text } from "react-native";
-import countries from "../../assets/countries.json";
 import Flag from "react-native-flags";
 import style from "./style";
+import { getCountryByNationality } from "../../utils/utils";
 
 export default function ConstructorInfo({ constructor }) {
-  const country = countries.find(
-    (country) => country.Nationality == constructor.nationality
-  );
+  const country = getCountryByNationality(constructor.nationality);
 
   return (
     <View style={style.constructorContainer}>

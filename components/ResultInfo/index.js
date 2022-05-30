@@ -1,16 +1,13 @@
 import { View, Text } from "react-native";
 import style from "./style";
-import countries from "../../assets/countries.json";
 import Flag from "react-native-flags";
 import { FontAwesome5, MaterialIcons, Ionicons } from "@expo/vector-icons";
+import { getCountryByNationality } from "../../utils/utils";
 
 export default function ResultInfo({ result }) {
-  const country = countries.find(
-    (country) => country.Nationality == result.Driver.nationality
-  );
-
-  const constructorCountry = countries.find(
-    (country) => country.Nationality == result.Constructor.nationality
+  const country = getCountryByNationality(result.Driver.nationality);
+  const constructorCountry = getCountryByNationality(
+    result.Constructor.nationality
   );
 
   const gridPos = parseInt(result.grid);

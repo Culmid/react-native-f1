@@ -1,12 +1,10 @@
 import { Pressable, View, Text } from "react-native";
-import countries from "../../assets/countries.json";
 import Flag from "react-native-flags";
 import style from "./style";
+import { getCountryByNationality } from "../../utils/utils";
 
 export default function DriverInfo({ driver, navigateDriver }) {
-  const country = countries.find(
-    (country) => country.Nationality == driver.nationality
-  );
+  const country = getCountryByNationality(driver.nationality);
 
   return (
     <Pressable onPress={() => navigateDriver(driver.driverId)}>
