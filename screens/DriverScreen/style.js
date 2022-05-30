@@ -9,6 +9,7 @@ export default StyleSheet.create({
     borderRadius: 10,
     padding: 5,
     alignItems: "center",
+    justifyContent: "center",
   },
   driverHeader: {
     flexDirection: "row",

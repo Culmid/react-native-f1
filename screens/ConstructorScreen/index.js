@@ -21,10 +21,10 @@ export default function ConstructorScreen(props) {
     const country = getCountryByNationality(constructor.nationality);
 
     return (
-      <View style={style.driverContainer}>
-        <Text style={style.driverHeaderText}>{constructor.name}</Text>
+      <View style={style.container}>
+        <Text style={style.headerText}>{constructor.name}</Text>
         {country && <Flag code={country.CCA2} size={48} />}
-        <Text style={style.nationality}>{constructor.nationality}</Text>
+        <Text style={style.bold}>{constructor.nationality}</Text>
         {imgPath ? (
           <Image
             style={{ flex: 1, width: "100%", height: "auto" }}

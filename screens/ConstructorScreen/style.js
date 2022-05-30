@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  driverContainer: {
+  container: {
     flex: 1,
     width: "100%",
     backgroundColor: "orange",
@@ -9,17 +9,18 @@ export default StyleSheet.create({
     borderRadius: 10,
     padding: 5,
     alignItems: "center",
+    justifyContent: "center",
   },
-  driverHeaderText: {
+  headerText: {
     fontWeight: "700",
     fontSize: 40,
     textAlign: "center",
   },
-  dob: {
+  italics: {
     fontStyle: "italic",
     fontSize: 20,
   },
-  nationality: {
+  bold: {
     fontWeight: "700",
     fontSize: 24,
   },

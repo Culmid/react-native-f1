@@ -21,12 +21,12 @@ export default function CircuitScreen(props) {
     const country = getCountryByCountry(circuit.Location.country);
 
     return (
-      <View style={style.driverContainer}>
-        <Text style={style.driverHeaderText}>{circuit.circuitName}</Text>
+      <View style={style.container}>
+        <Text style={style.headerText}>{circuit.circuitName}</Text>
         {country && <Flag code={country.CCA2} size={48} />}
-        <Text style={style.dob}>{circuit.Location.locality}</Text>
-        <Text style={style.nationality}>{circuit.Location.country}</Text>
-        <Text style={style.dob}>
+        <Text style={style.italics}>{circuit.Location.locality}</Text>
+        <Text style={style.bold}>{circuit.Location.country}</Text>
+        <Text style={style.italics}>
           Latitude, Longitude: {circuit.Location.lat}, {circuit.Location.long}
         </Text>
         {imgPath ? (
