@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ActivityIndicator, Image, Button } from "react-native";
+import { Text, ActivityIndicator, Button } from "react-native";
 import ScreenContainer from "../../components/ScreenContainer";
-import countries from "../../assets/countries.json";
-import style from "./style";
-import Flag from "react-native-flags";
+import SingleDriverInfo from "../../components/SingleDriverInfo";
 import { fetchWikiImgUrl } from "../../utils/utils";
 
 /**
@@ -17,37 +15,6 @@ export default function DriverScreen(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [imgPath, setImgPath] = useState(null);
-
-  function DriverComponent() {
-    const country = countries.find(
-      (country) => country.Nationality == driver.nationality
-    );
-
-    return (
-      <View style={style.driverContainer}>
-        <Text style={style.driverHeaderText}>
-          {driver.givenName} {driver.familyName}
-        </Text>
-        {driver.code && (
-          <Text style={style.driverSubHeaderText}>
-            {driver.code} {driver.permanentNumber}
-          </Text>
-        )}
-
-        {country && <Flag code={country.CCA2} size={48} />}
-        <Text style={style.dob}>{driver.dateOfBirth}</Text>
-        <Text style={style.nationality}>{driver.nationality}</Text>
-        {imgPath ? (
-          <Image
-            style={{ flex: 1, width: "100%", borderRadius: 10 }}
-            source={{
-              uri: imgPath,
-            }}
-          />
-        ) : null}
-      </View>
-    );
-  }
 
   function navigateDrivers() {
     props.navigation.navigate("DriversNavigator");
@@ -87,7 +54,7 @@ export default function DriverScreen(props) {
       {isError && <Text>Error, Please Refresh the App</Text>}
       {!isLoading && !isError && (
         <>
-          <DriverComponent />
+          <SingleDriverInfo driver={driver} imgPath={imgPath} />
           <Button title="Back" color="orange" onPress={navigateDrivers} />
         </>
       )}
