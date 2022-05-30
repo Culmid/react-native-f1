@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ActivityIndicator, Image, Button } from "react-native";
+import { Text, ActivityIndicator, Button } from "react-native";
 import ScreenContainer from "../../components/ScreenContainer";
-import style from "./style";
-import Flag from "react-native-flags";
-import { getCountryByCountry, fetchWikiImgUrl } from "../../utils/utils";
+import SingleCircuitInfo from "../../components/SingleCircuitInfo";
+import { fetchWikiImgUrl } from "../../utils/utils";
 
 /**
  * Singular circuit page to be shown when the CircuitsScreen FlatList is clicked.
@@ -16,31 +15,6 @@ export default function CircuitScreen(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [imgPath, setImgPath] = useState(null);
-
-  function CircuitComponent() {
-    const country = getCountryByCountry(circuit.Location.country);
-
-    return (
-      <View style={style.container}>
-        <Text style={style.headerText}>{circuit.circuitName}</Text>
-        {country && <Flag code={country.CCA2} size={48} />}
-        <Text style={style.italics}>{circuit.Location.locality}</Text>
-        <Text style={style.bold}>{circuit.Location.country}</Text>
-        <Text style={style.italics}>
-          Latitude, Longitude: {circuit.Location.lat}, {circuit.Location.long}
-        </Text>
-        {imgPath ? (
-          <Image
-            style={{ flex: 1, width: "100%", height: "auto" }}
-            source={{
-              uri: imgPath,
-            }}
-            resizeMode="center"
-          />
-        ) : null}
-      </View>
-    );
-  }
 
   function navigateCircuits() {
     props.navigation.navigate("CircuitsNavigator");
@@ -80,7 +54,7 @@ export default function CircuitScreen(props) {
       {isError && <Text>Error, Please Refresh the App</Text>}
       {!isLoading && !isError && (
         <>
-          <CircuitComponent />
+          <SingleCircuitInfo circuit={circuit} imgPath={imgPath} />
           <Button title="Back" color="orange" onPress={navigateCircuits} />
         </>
       )}
