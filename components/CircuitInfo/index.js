@@ -3,6 +3,11 @@ import Flag from "react-native-flags";
 import style from "./style";
 import { getCountryByCountry } from "../../utils/utils";
 
+/**
+ * Circuit information display, simplified for a list.
+ * @param {Object} props Properties containing the circuit information and routing to the singular circuit page.
+ * @returns Pressable circuit information display for the FlatList on CircuitsScreen.
+ */
 export default function CircuitInfo({ circuit, navigateCircuit }) {
   const country = getCountryByCountry(circuit.Location.country);
 

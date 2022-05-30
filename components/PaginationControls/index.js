@@ -1,6 +1,11 @@
 import { View, Button, Text } from "react-native";
 import style from "./style";
 
+/**
+ * General pagination controls to be used on information pages.
+ * @param {Object} props Properties containing the pagination information.
+ * @returns Pagination component, for use at the bottom of information pages.
+ */
 export default function PaginationControls({
   offset,
   total,

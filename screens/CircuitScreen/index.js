@@ -5,6 +5,11 @@ import style from "./style";
 import Flag from "react-native-flags";
 import { getCountryByCountry } from "../../utils/utils";
 
+/**
+ * Singular circuit page to be shown when the CircuitsScreen FlatList is clicked.
+ * @param {Object} props Properties containing the circuitId and routing information.
+ * @returns Singular circuit page.
+ */
 export default function CircuitScreen(props) {
   const circuitId = props.route.params.circuitId;
   const [circuit, setCircuit] = useState({});

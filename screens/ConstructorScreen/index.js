@@ -5,6 +5,11 @@ import style from "./style";
 import Flag from "react-native-flags";
 import { getCountryByNationality } from "../../utils/utils";
 
+/**
+ * Singular constructor page to be shown when the ConstructorsScreen FlatList is clicked.
+ * @param {Object} props Properties containing the constructorId and routing information.
+ * @returns Singular constructor page.
+ */
 export default function ConstructorScreen(props) {
   const constructorId = props.route.params.constructorId;
   const [constructor, setConstructor] = useState({});

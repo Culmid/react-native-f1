@@ -4,6 +4,11 @@ import Flag from "react-native-flags";
 import { FontAwesome5, MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { getCountryByNationality } from "../../utils/utils";
 
+/**
+ * Result information display, simplified for a list.
+ * @param {Object} props Properties containing the result information.
+ * @returns Result information display for the FlatList on ResultsScreen.
+ */
 export default function ResultInfo({ result }) {
   const country = getCountryByNationality(result.Driver.nationality);
   const constructorCountry = getCountryByNationality(

@@ -3,6 +3,11 @@ import Flag from "react-native-flags";
 import style from "./style";
 import { getCountryByNationality } from "../../utils/utils";
 
+/**
+ * Constructor information display, simplified for a list.
+ * @param {Object} props Properties containing the constructor information and routing to the singular constructor page.
+ * @returns Pressable constructor information display for the FlatList on ConstructorsScreen.
+ */
 export default function ConstructorInfo({ constructor, navigateConstructor }) {
   const country = getCountryByNationality(constructor.nationality);
 

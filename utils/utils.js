@@ -1,5 +1,10 @@
 import countries from "../assets/countries.json";
 
+/**
+ * Get a country object from countries.json using country name.
+ * @param {String} testCountry Name of country to find.
+ * @returns null or country object from countries.json.
+ */
 function getCountryByCountry(testCountry) {
   return countries.find(
     (country) =>
@@ -17,6 +22,11 @@ function shortenCountryName(countryName) {
     .join("");
 }
 
+/**
+ * Get a country object from countries.json using nationality.
+ * @param {String} nationality Nationality of country to find.
+ * @returns null or country object from countries.json.
+ */
 function getCountryByNationality(nationality) {
   return countries.find((country) => country.Nationality == nationality);
 }

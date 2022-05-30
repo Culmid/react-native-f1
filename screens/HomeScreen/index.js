@@ -2,6 +2,10 @@ import { View, Text, ImageBackground } from "react-native";
 import style from "./style";
 import ScreenContainer from "../../components/ScreenContainer";
 
+/**
+ * Home screen for the app containing a welcoming message and a picture.
+ * @returns Home Screen.
+ */
 export default function HomeScreen() {
   return (
     <ScreenContainer>

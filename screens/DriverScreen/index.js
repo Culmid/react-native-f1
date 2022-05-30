@@ -5,6 +5,11 @@ import countries from "../../assets/countries.json";
 import style from "./style";
 import Flag from "react-native-flags";
 
+/**
+ * Singular driver page to be shown when the DriversScreen FlatList is clicked.
+ * @param {Object} props Properties containing the driverId and routing information.
+ * @returns Singular driver page.
+ */
 export default function DriverScreen(props) {
   const driverId = props.route.params.driverId;
   const [driver, setDriver] = useState({});

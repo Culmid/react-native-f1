@@ -3,6 +3,11 @@ import Flag from "react-native-flags";
 import { getCountryByCountry } from "../../utils/utils";
 import style from "./style";
 
+/**
+ * Header component meant for usage on the ResultsScreen.
+ * @param {Object} props Properties containing the information about recent race results.
+ * @returns Header component for use on the ResultsScreen.
+ */
 export default function ResultHeader({ results }) {
   const country = getCountryByCountry(results.Circuit.Location.country);
 

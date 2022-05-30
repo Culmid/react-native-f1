@@ -5,6 +5,10 @@ import ScreenContainer from "../../components/ScreenContainer";
 import ResultInfo from "../../components/ResultInfo";
 import ResultHeader from "../../components/ResultHeader";
 
+/**
+ * Results page component to display the most recent f1 result.
+ * @returns Results screen displaying a breakdown of the most recent result.
+ */
 export default function ResultsScreen() {
   const [results, setResults] = useState({});
   const [isLoading, setIsLoading] = useState(true);

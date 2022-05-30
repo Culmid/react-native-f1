@@ -5,6 +5,11 @@ import style from "./style";
 import ScreenContainer from "../../components/ScreenContainer";
 import PaginationControls from "../../components/PaginationControls";
 
+/**
+ * A template component for information pages, meant to reduce duplication between information pages.
+ * @param {Object} props Properties containing the type of information page and the item to be rendered in the FlatList.
+ * @returns The filled in template of a GenericInfoPage, to be used elsewhere.
+ */
 export default function GenericInfoPage({ type, renderItem }) {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);

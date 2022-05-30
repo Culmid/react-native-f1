@@ -3,6 +3,11 @@ import Flag from "react-native-flags";
 import style from "./style";
 import { getCountryByNationality } from "../../utils/utils";
 
+/**
+ * Driver information display, simplified for a list.
+ * @param {Object} props Properties containing the driver information and routing to the singular driver page.
+ * @returns Pressable driver information display for the FlatList on DriversScreen.
+ */
 export default function DriverInfo({ driver, navigateDriver }) {
   const country = getCountryByNationality(driver.nationality);
 
