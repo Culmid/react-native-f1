@@ -14,6 +14,7 @@ import DriversScreen from "./screens/DriversScreen";
 import HomeScreen from "./screens/HomeScreen";
 import ResultsScreen from "./screens/ResultsScreen";
 import DriverScreen from "./screens/DriverScreen";
+import CircuitScreen from "./screens/CircuitScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -63,13 +64,22 @@ function DriverNavigator() {
   );
 }
 
+function CircuitNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="CircuitsNavigator" component={CircuitsScreen} />
+      <Stack.Screen name="Circuit" component={CircuitScreen} />
+    </Stack.Navigator>
+  );
+}
+
 export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={screenOptions}>
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Drivers" component={DriverNavigator} />
-        <Tab.Screen name="Circuits" component={CircuitsScreen} />
+        <Tab.Screen name="Circuits" component={CircuitNavigator} />
         <Tab.Screen name="Constructors" component={ConstructorsScreen} />
         <Tab.Screen name="Results" component={ResultsScreen} />
       </Tab.Navigator>
