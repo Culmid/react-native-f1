@@ -3,6 +3,11 @@ import { Text, ActivityIndicator, Button } from "react-native";
 import ScreenContainer from "../../components/ScreenContainer";
 import { fetchWikiImgUrl } from "../../utils/utils";
 
+/**
+ * Template component for single information pages.
+ * @param {Object} props Properties containing type, content renderer and routing information.
+ * @returns Filled in single page template.
+ */
 export default function GenericSingleInfoPage(props) {
   const type = props.type;
   const id = props.route.params[`${type.toLowerCase()}Id`];

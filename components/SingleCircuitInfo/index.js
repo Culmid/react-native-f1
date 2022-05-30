@@ -3,6 +3,11 @@ import style from "./style";
 import Flag from "react-native-flags";
 import { getCountryByCountry } from "../../utils/utils";
 
+/**
+ * Information for single circuit page.
+ * @param {Object} props Properties containing circuit information and path to the wiki picture.
+ * @returns Information component for single circuit page.
+ */
 export default function SingleCircuitInfo({ circuit, imgPath }) {
   const country = getCountryByCountry(circuit.Location.country);
 

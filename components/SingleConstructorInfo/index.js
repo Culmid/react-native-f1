@@ -3,6 +3,11 @@ import Flag from "react-native-flags";
 import { getCountryByNationality } from "../../utils/utils";
 import style from "./style";
 
+/**
+ * Information for single constructor page.
+ * @param {Object} props Properties containing constructor information and path to the wiki picture.
+ * @returns Information component for single constructor page.
+ */
 export default function SingleConstructorInfo({ constructor, imgPath }) {
   const country = getCountryByNationality(constructor.nationality);
 

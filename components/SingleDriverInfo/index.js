@@ -3,6 +3,11 @@ import Flag from "react-native-flags";
 import { getCountryByNationality } from "../../utils/utils";
 import style from "./style";
 
+/**
+ * Information for single driver page.
+ * @param {Object} props Properties containing driver information and path to the wiki picture.
+ * @returns Information component for single driver page.
+ */
 export default function SingleDriverInfo({ driver, imgPath }) {
   const country = getCountryByNationality(driver.nationality);
 
